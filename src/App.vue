@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <item-search-engine></item-search-engine>
+    <Searchbar/>
   </div>
 </template>
 
 <script>
-import ItemSearchEngine from "@/components/Searchbar";
+import Searchbar from "./components/Searchbar";
 
 export default {
   name: 'app',
   components: {
-      ItemSearchEngine
+    Searchbar
   }
 }
 </script>

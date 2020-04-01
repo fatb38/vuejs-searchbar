@@ -29,9 +29,11 @@
 </template>
 
 <script>
-    // const axios = require('axios');
+    const axios = require('axios');
+
     export default {
-        name: "CustomerSelector",
+        name: "Searchbar",
+
         data() {
             return {
                 search: '',
@@ -41,32 +43,42 @@
             }
         },
         methods: {
-            changeItem: function () {
+            changeItem() {
                 this.selectedItem = false;
                 this.search = this.lastSearch;
                 this.getItems(this.search);
             },
-            getItems: function (search) {
+
+            async getItems(search) {
 
                 if (search) {
+                    try {
+                        const request = await axios.get(`http://localhost:8888/server.php?q=${search}`);
+                        this.items = request.data
+                    } catch (error) {
+                        console.error(error)
+                    }
+
+                    /* former version with promises
                     fetch(`http://localhost:8888/server.php?q=${search}`)
                         .then(response => response.json())
                         .then(data => this.items = data)
                         // eslint-disable-next-line no-console
                         .catch((error) => console.error('Error with the server' + error))
 
-                    // axios
-                    //     .get(`http://localhost:8888/server.php?q=${search}`)
-                    //     .then(response => (this.items = response.data))
-                    //     // eslint-disable-next-line no-console
-                    //     .catch((error)) => console.error('Error with the server' + error))
+                    axios
+                        .get(`http://localhost:8888/server.php?q=${search}`)
+                        .then(response => (this.items = response.data))
+                        // eslint-disable-next-line no-console
+                        .catch((error)) => console.error('Error with the server' + error))
+                    */
                 }
             },
-            resetSearch: function () {
+            resetSearch () {
                 this.search = '';
                 this.items = [];
             },
-            selectItem: function (customer) {
+            selectItem (customer) {
                 this.selectedItem = customer;
                 this.lastSearch = this.search;
                 this.resetSearch();
