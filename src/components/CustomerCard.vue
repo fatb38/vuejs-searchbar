@@ -1,3 +1,28 @@
+<script setup>
+defineProps({
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  id: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  selected: {
+    type: Boolean,
+    default: false
+  }
+})
+</script>
+
 <template>
   <li :class="selected ? 'selected-item' : ''">
     <h3>{{ firstname }} {{ lastname }}</h3>
@@ -7,34 +32,6 @@
     <a href="#" class="right-btn" @click="$emit('customer-selected')">Choose</a>
   </li>
 </template>
-
-<script>
-export default {
-  name: 'CustomerCard',
-  props: {
-    firstname: {
-      type: String,
-      required: true
-    },
-    lastname: {
-      type: String,
-      required: true
-    },
-    id: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true
-    },
-    selected: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>
 
 <style scoped lang="scss">
 $redColor: #E60447;

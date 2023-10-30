@@ -1,19 +1,12 @@
+<script setup>
+import SearchBar from './components/SearchBar.vue'
+</script>
+
 <template>
   <div id="app">
-    <Searchbar/>
+    <SearchBar />
   </div>
 </template>
-
-<script>
-import Searchbar from "./components/Searchbar";
-
-export default {
-  name: 'app',
-  components: {
-    Searchbar
-  }
-}
-</script>
 
 <style>
 #app {
